@@ -1,6 +1,5 @@
 class PrototypesController < ApplicationController
   before_action :authenticate_user!, only: [:create, :destroy, :edit, :update]
-  # before_action :move_to_index, except: :index
 
   def index
     @prototypes = Prototype.all
@@ -12,7 +11,6 @@ class PrototypesController < ApplicationController
   end
 
   def create
-    # binding.pry
     @prototype = Prototype.new(prototype_params)
     if @prototype.save
       redirect_to root_path
