@@ -11,6 +11,7 @@ class PrototypesController < ApplicationController
   end
 
   def create
+    # binding.pry
     @prototype = Prototype.new(prototype_params)
     if @prototype.save
       redirect_to root_path
@@ -31,8 +32,9 @@ end
     @prototype = Prototype.find(params[:id])
     unless @prototype.user_id == current_user.id
       redirect_to action: :index
+    end
   end
-
+  
   def update
     @prototype = Prototype.find(params[:id])
     if @prototype.update(prototype_params)
@@ -52,5 +54,5 @@ end
   def prototype_params
     params.require(:prototype).permit(:title, :catch_copy, :concept, :image).merge( user_id: current_user.id)
   end
- end
+
 end
